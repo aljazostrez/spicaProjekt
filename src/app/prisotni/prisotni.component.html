@@ -1,0 +1,21 @@
+<div id="prisotni">
+<h1>Prisotni</h1>
+<ul>
+    <div *ngFor="let employee of employees">
+        <li id="greenDot" *ngIf="employee.prisoten">
+            {{employee.ime}} {{employee.priimek}}
+        </li>
+    </div>
+</ul>
+</div>
+<div id="odsotni">
+<h1>Odsotni</h1>
+<ul>
+    <div *ngFor="let employee of employees">
+        <li id="redDot" *ngIf="!employee.prisoten">
+            {{employee.ime}} {{employee.priimek}}
+        </li>
+    </div>
+</ul>
+</div>
+<!-- <button (click)="refresh()">OSVEŽI</button> -->

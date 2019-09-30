@@ -1,0 +1,15 @@
+td {
+    padding-top: 5pt;
+    padding-left: 5pt;
+}
+
+button {
+    margin-top: 10pt;
+    margin-left: 5pt;
+}
+
+.notes {
+    margin:5pt;
+    color:red;
+    font-size: 15pt;
+}

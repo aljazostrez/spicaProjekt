@@ -1,0 +1,30 @@
+<input [(ngModel)]="searchByName" placeholder="Iskanje po imenu..." (input)="searchName()"/>
+<input [(ngModel)]="searchBySurname" placeholder="Iskanje po priimku..." (input)="searchSurname()"/>
+<table>
+    <thead>
+        <tr>
+            <th>Ime</th>
+            <th>Priimek</th>
+            <th>Email</th>
+            <th>Matična</th>
+            <th>Status</th>
+            <th>Akcija</th>
+            <th>Izbriši</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let employee of employees">
+            <td>{{ employee.ime }}</td>
+            <td>{{ employee.priimek }}</td>
+            <td>{{ employee.email }}</td>
+            <td>{{ employee.maticna }}</td>
+            <td id="prisoten" *ngIf="employee.prisoten">Prisoten</td>
+            <td id="odsoten" *ngIf="!employee.prisoten">Odsoten</td>
+            <td class="tableButtons" *ngIf="employee.prisoten"><button (click)="actionLeft(employee)">Odšel</button></td>
+            <td class="tableButtons" *ngIf="!employee.prisoten"><button (click)="actionCame(employee)">Prišel</button></td>
+            <td class="tableButtons"><button id="deleteButton" (click)="deleteEmployee(employee)">X</button></td>
+        </tr>
+    </tbody>
+</table>
+<br>
+<button (click)="dodajZaposlenegaPage()">DODAJ</button>

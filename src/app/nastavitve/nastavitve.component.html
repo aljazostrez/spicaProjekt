@@ -1,0 +1,23 @@
+Ta stran trenutno nima funkcionalnosti, deluje kot zgled, če
+bi podatke črpali iz api-ja.
+<br>
+<br>
+<table>
+    <tr>
+        <td>URL: </td>
+        <td><input [(ngModel)]="url" /></td>
+    </tr>
+    <tr>
+        <td>Avtorizacijski ključ: </td>
+        <td><input [(ngModel)]="key" /></td>
+    </tr>
+</table>
+<button (click)="checkUrlKey()">OK</button>
+<br>
+<br>
+<div class="notes" *ngIf='authorisation === true'>
+    Povezava na server uspešna. Lahko obiščete stran Zaposleni in Prisotni.
+</div>
+<div class="notes" *ngIf='authorisation === false'>
+    Neprepoznan url oz. avtorizacijski ključ.
+</div>

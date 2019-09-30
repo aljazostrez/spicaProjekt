@@ -1,0 +1,32 @@
+table {
+  margin-top: 10pt;
+  width: 100%;
+}
+th {
+  text-align: left;
+  background-color: #039ae55b;
+}
+th, td {
+  padding: 5px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+#deleteButton {
+  background-color: red;
+  color: white;
+  border-radius: 100%;
+}
+.tableButtons {
+  text-align: center;
+}
+#prisoten {
+  color: green;
+}
+#odsoten {
+  color: red;
+}
+
+input {
+  margin-top:10pt;
+}

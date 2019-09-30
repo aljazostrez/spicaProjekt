@@ -1,0 +1,49 @@
+
+ul {
+  list-style-type: none; /* no default bullets */
+}
+
+ul li { 
+  font-family: Arial;
+  margin: 15pt;
+  margin-left: -20pt;
+  font-size: 18px;
+}
+
+ul #greenDot:before { /* the custom styled bullets */
+  background-color: #14CCBB;
+  border-radius: 50%;
+  content: "";
+  display: inline-block;
+  margin-right: 10px;
+  margin-bottom: 2px;
+  height: 10px;
+  width: 10px;
+}
+ul #redDot:before { /* the custom styled bullets */
+  background-color: red;
+  border-radius: 50%;
+  content: "";
+  display: inline-block;
+  margin-right: 10px;
+  margin-bottom: 2px;
+  height: 10px;
+  width: 10px;
+}
+
+#prisotni {
+  float: left;
+  position: relative;
+  width: 50%;
+}
+
+#odsotni {
+  position: relative;
+  width: 50%;
+  float: right;
+}
+
+button {
+  position: relative;
+  float: left;
+}
