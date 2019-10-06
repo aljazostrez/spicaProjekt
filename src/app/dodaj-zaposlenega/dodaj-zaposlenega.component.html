@@ -22,9 +22,6 @@
 <div class="notes" *ngIf='nameOfAdded'>
     Uslužbenec {{ nameOfAdded }} je dodan.
 </div>
-<div class="notes" *ngIf='!nameOfAdded && !employeeAlreadyExist'>
+<div class="notes" *ngIf='!nameOfAdded'>
     Vnesite podatke!
-</div>
-<div class="notes" *ngIf='employeeAlreadyExist'>
-    Uslužbenec s to matično številko že obstaja!
 </div>

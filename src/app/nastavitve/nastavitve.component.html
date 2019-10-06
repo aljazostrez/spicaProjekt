@@ -1,6 +1,4 @@
-Ta stran trenutno nima funkcionalnosti, deluje kot zgled, če
-bi podatke črpali iz api-ja.
-<br>
+<div *ngIf="!connectedToAPI">
 <br>
 <table>
     <tr>
@@ -9,15 +7,16 @@ bi podatke črpali iz api-ja.
     </tr>
     <tr>
         <td>Avtorizacijski ključ: </td>
-        <td><input [(ngModel)]="key" /></td>
+        <td><input [(ngModel)]="authKey" /></td>
     </tr>
 </table>
 <button (click)="checkUrlKey()">OK</button>
 <br>
 <br>
-<div class="notes" *ngIf='authorisation === true'>
-    Povezava na server uspešna. Lahko obiščete stran Zaposleni in Prisotni.
-</div>
-<div class="notes" *ngIf='authorisation === false'>
+<div class="notes" *ngIf='showError'>
     Neprepoznan url oz. avtorizacijski ključ.
+</div>
+</div>
+<div *ngIf="connectedToAPI === true">
+<app-povezano></app-povezano>
 </div>

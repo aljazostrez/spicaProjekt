@@ -1,7 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { EmployeeService } from '../employee.service';
 import { Router } from '@angular/router';
 import { Employee } from '../employee';
+import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
 
 @Component({
   selector: 'app-employees',
@@ -10,54 +11,37 @@ import { Employee } from '../employee';
 })
 export class EmployeesComponent implements OnInit {
 
-  @Input() searchByName = "";
-  @Input() searchBySurname = "";
+  @Input() searchByName: string = "";
+  @Input() searchBySurname: string = "";
 
-  employees: Employee[];
+  dataSource = new MatTableDataSource<Employee>();
+  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+  @ViewChild(MatSort, {static: true}) sort: MatSort;
+
+  displayedColumns: string[] = ['FirstName', 'LastName', 'Email', 'ReferenceId']
 
   constructor(
-    private _employeeService: EmployeeService,
+    private employeeService: EmployeeService,
     private router: Router
-    ) { }
+    ) {}
 
   ngOnInit() {
-    this.employees = this._employeeService.getEmployees();
-
-    // this._employeeService.getEmployees()
-    // .subscribe(data => this.employees = data);
+    this.employeeService.getEmployees()
+        .subscribe(
+          data => this.dataSource.data = Object.keys(data).map(key => data[key])
+          );
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
 
   dodajZaposlenegaPage(): void {
     this.router.navigate(['employees/dodaj']);
   }
 
-  actionCame(employee: Employee): void {
-    let indexValue = this.employees.indexOf(employee);
-    this.employees[indexValue].prisoten = true;
-  }
-
-  actionLeft(employee: Employee): void {
-    let indexValue = this.employees.indexOf(employee);
-    this.employees[indexValue].prisoten = false;
-  }
-
-  deleteEmployee(employee: Employee): void {
-    this.employees = this.employees.filter(object => object !== employee);
-    this._employeeService.employees = this.employees.filter(object => object !== employee);
-  }
-
-  searchName(): void {
-    if (this.searchByName == "") this.ngOnInit();
-    else {
-      this.ngOnInit();
-      this.employees = this.employees.filter(object => object.ime.toLocaleLowerCase().includes(this.searchByName.toLocaleLowerCase()));
-    }
-  }
-  searchSurname() {
-    if (this.searchBySurname == "") this.ngOnInit();
-    else {
-      this.ngOnInit();
-      this.employees = this.employees.filter(object => object.priimek.toLocaleLowerCase().includes(this.searchBySurname.toLocaleLowerCase()));
+  applyFilter(filterValue: string): void {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
     }
   }
 

@@ -3,6 +3,10 @@ td {
     padding-left: 5pt;
 }
 
+input {
+    width: 300pt;
+}
+
 button {
     margin-top: 10pt;
     margin-left: 5pt;

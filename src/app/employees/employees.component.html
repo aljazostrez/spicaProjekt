@@ -1,30 +1,36 @@
-<input [(ngModel)]="searchByName" placeholder="Iskanje po imenu..." (input)="searchName()"/>
-<input [(ngModel)]="searchBySurname" placeholder="Iskanje po priimku..." (input)="searchSurname()"/>
-<table>
-    <thead>
-        <tr>
-            <th>Ime</th>
-            <th>Priimek</th>
-            <th>Email</th>
-            <th>Matična</th>
-            <th>Status</th>
-            <th>Akcija</th>
-            <th>Izbriši</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let employee of employees">
-            <td>{{ employee.ime }}</td>
-            <td>{{ employee.priimek }}</td>
-            <td>{{ employee.email }}</td>
-            <td>{{ employee.maticna }}</td>
-            <td id="prisoten" *ngIf="employee.prisoten">Prisoten</td>
-            <td id="odsoten" *ngIf="!employee.prisoten">Odsoten</td>
-            <td class="tableButtons" *ngIf="employee.prisoten"><button (click)="actionLeft(employee)">Odšel</button></td>
-            <td class="tableButtons" *ngIf="!employee.prisoten"><button (click)="actionCame(employee)">Prišel</button></td>
-            <td class="tableButtons"><button id="deleteButton" (click)="deleteEmployee(employee)">X</button></td>
-        </tr>
-    </tbody>
-</table>
+<br>
+
+<mat-form-field>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Išči...">
+</mat-form-field>
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
+
+    <ng-container matColumnDef="FirstName">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Ime </th>
+      <td mat-cell *matCellDef="let employee"> {{employee.FirstName}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="LastName">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Priimek </th>
+      <td mat-cell *matCellDef="let employee"> {{employee.LastName}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="Email">
+      <th mat-header-cell *matHeaderCellDef> Email </th>
+      <td mat-cell *matCellDef="let employee"> {{employee.Email}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="ReferenceId">
+      <th mat-header-cell *matHeaderCellDef> Matična št. </th>
+      <td mat-cell *matCellDef="let employee"> {{employee.ReferenceId}} </td>
+    </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  <mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+
+
 <br>
 <button (click)="dodajZaposlenegaPage()">DODAJ</button>

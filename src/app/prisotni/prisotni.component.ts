@@ -12,19 +12,19 @@ export class PrisotniComponent implements OnInit {
   employees: Employee[];
 
   constructor(
-    private _employeeService: EmployeeService,
+    private employeeService: EmployeeService
     ) {}
 
   ngOnInit() {
-    this.employees = this._employeeService.getEmployees();
-    
-    // this._employeeService.getEmployees()
-    // .subscribe(data => this.employees = data);
+    this.employeeService.getEmployees()
+          .subscribe(
+            data => this.employees = Object.keys(data).map(key => data[key])
+            );
   }
 
-  // refresh(): void {
-  //   location.reload();
-  // }
+  refresh(): void {
+    location.reload();
+  }
 
 
 }
