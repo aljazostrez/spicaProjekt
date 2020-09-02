@@ -14,8 +14,8 @@ export class EmployeeService {
   
   getSession(url: string, key: string): Observable<any> {
     let body = {
-      "Username": "demo",
-      "Password": "demo",
+      "Username": "Timeapi",
+      "Password": "timeapi",
       "Sid": ""
     };
     let httpOptions = {
