@@ -34,7 +34,8 @@ export class EmployeeService {
     let httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        'Authorization': `${key}:${token}`
+        // 'Authorization': `${key}:${token}`
+        'Authorization': `${key}`
       })
     }
     return this.http.get(`${url}/employee`, httpOptions);
@@ -43,11 +44,12 @@ export class EmployeeService {
   addEmployee(employee: Employee): Observable<any> {
     let url = localStorage.getItem("url");
     let key = localStorage.getItem("authKey");
-    let token = JSON.parse(localStorage.getItem("token")).Token;
+    // let token = JSON.parse(localStorage.getItem("token")).Token;
     let httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        'Authorization': `${key}:${token}`
+        // 'Authorization': `${key}:${token}`
+        'Authorization': `${key}`
       })
     }
     return this.http.put(`${url}/employee`, employee, httpOptions);

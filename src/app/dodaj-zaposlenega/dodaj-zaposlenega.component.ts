@@ -33,45 +33,46 @@ export class DodajZaposlenegaComponent implements OnInit {
   }
 
   add(): void {
+    if (!this.ime || !this.priimek || !this.email || !this.maticna) return;
     this.ime = this.ime.trim();
     this.priimek = this.priimek.trim();
     this.email = this.email.trim();
     this.maticna = stringify(+this.maticna.trim());
-    if (!this.ime || !this.priimek || !this.email || !this.maticna) return;
-    let newEmployee: Employee = {
-      "Id": null,
+    let newEmployee: Employee =
+    {
+      "Id": 0,
       "LastName": this.priimek,
       "FirstName": this.ime,
-      "MiddleName": "",
-      "City": "",
-      "Phone": "",
-      "Address": "",
-      "State": "",
-      "Fax": "",
+      "MiddleName": null,
+      "City": null,
+      "Phone": null,
+      "Address": null,
+      "State": null,
+      "Fax": null,
       "ReferenceId": this.maticna,
       "Birth": "",
-      "WorkingSchemeType": Math.round(Math.random()*100),
-      "Occupation": "",
-      "Unit3": "",
-      "Unit2": "",
-      "Unit1": "",
+      "WorkingSchemeType": null,
+      "Occupation": null,
+      "Unit3": null,
+      "Unit2": null,
+      "Unit1": null,
       "Email": this.email,
-      "Other": "",
-      "MobilePhone": "",
+      "Other": null,
+      "MobilePhone": null,
       "OrganizationalUnitId": null,
-      "AdditionalField1": "",
-      "AdditionalField2": "",
-      "AdditionalField3": "",
-      "AdditionalField4": "",
-      "AdditionalField5": "",
+      "AdditionalField1": null,
+      "AdditionalField2": null,
+      "AdditionalField3": null,
+      "AdditionalField4": null,
+      "AdditionalField5": null,
       "AdditionalField6": null,
       "AdditionalField7": null,
       "AdditionalField8": null,
       "AdditionalField9": null,
       "AdditionalField10": null,
       "Active": true,
-      "CurrentWorkingSchemeId": 0
-    };
+      "CurrentWorkingSchemeId": null
+  }
     this.employeeService.addEmployee(newEmployee).subscribe();
     this.nameOfAdded=this.ime;
   }
